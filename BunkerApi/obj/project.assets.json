@@ -107,6 +107,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Bunker.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Bunker.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Bunker.Contracts.dll": {}
+        }
       }
     }
   },
@@ -451,10 +461,16 @@
         "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Bunker.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Bunker.Contracts/Bunker.Contracts.csproj",
+      "msbuildProject": "../Bunker.Contracts/Bunker.Contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Bunker.Contracts >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.3",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -489,7 +505,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Sorgenti\\BunkerApi\\Bunker.Contracts\\Bunker.Contracts.csproj": {
+              "projectPath": "C:\\Sorgenti\\BunkerApi\\Bunker.Contracts\\Bunker.Contracts.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

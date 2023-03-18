@@ -17,6 +17,6 @@ public class BunkerController : ControllerBase
     [HttpGet("{id:guid}")]
     public IActionResult GetBunkers(Guid id)
     {
-        return Ok();
+        return Ok(id);
     }
 }
