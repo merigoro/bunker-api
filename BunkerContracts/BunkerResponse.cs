@@ -1,4 +1,4 @@
-namespace Bunker.Contracts;
+namespace BunkerContracts;
 
 public record BunkerResponse
 (

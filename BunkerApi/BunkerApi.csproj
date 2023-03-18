@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bunker.Contracts\Bunker.Contracts.csproj" />
+    <ProjectReference Include="..\BunkerContracts\BunkerContracts.csproj" />
   </ItemGroup>
 
 </Project>
