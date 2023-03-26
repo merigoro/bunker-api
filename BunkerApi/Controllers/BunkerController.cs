@@ -6,7 +6,8 @@ using BunkerApi.Models;
 namespace BunkerApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 public class BunkerController : ControllerBase
 {
     private readonly ILogger<BunkerController> _logger;
