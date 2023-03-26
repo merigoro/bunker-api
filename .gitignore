@@ -482,3 +482,7 @@ $RECYCLE.BIN/
 *.lnk
 /BunkerApi/obj/Debug/net7.0/BunkerApi.csproj.AssemblyReference.cache
 /BunkerApi/obj/Debug/net7.0/project.razor.json
+/BunkerApi/obj/project.nuget.cache
+/BunkerApi/obj/Debug/net7.0/BunkerApi.assets.cache
+/BunkerApi/obj/BunkerApi.csproj.nuget.dgspec.json
+/BunkerApi/obj/project.assets.json
