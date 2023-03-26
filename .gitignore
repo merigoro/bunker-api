@@ -480,3 +480,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/BunkerApi/obj/Debug/net7.0/BunkerApi.csproj.AssemblyReference.cache
+/BunkerApi/obj/Debug/net7.0/project.razor.json
