@@ -26,7 +26,7 @@ public class BunkerController : ControllerBase
         return Ok(bunker);
     }
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetBunker(Guid id)
+    public async Task<IActionResult> GetBunker([FromRoute] Guid id)
     {
         Bunker bunker = await _bunkerService.GetBunker(id);
         return Ok(bunker);
@@ -38,15 +38,21 @@ public class BunkerController : ControllerBase
         return Ok(bunkers);
     }
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> UpdateBunker(Guid id)
+    public async Task<IActionResult> UpdateBunker([FromRoute] Guid id)
     {
         Bunker bunker = await _bunkerService.UpdateBunker(id);
         return Ok(bunker);
     }
     [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> DeleteBunker(Guid id)
+    public async Task<IActionResult> DeleteBunker([FromRoute] Guid id)
     {
         Bunker bunker = await _bunkerService.DeleteBunker(id);
         return Ok();
+    }
+    [HttpGet("closest/{latitudine}/{longitude}")]
+    public async Task<IActionResult> GetClosestBunker([FromRoute] double latitudine, [FromRoute] double longitude)
+    {
+        Bunker bunker = await _bunkerService.GetClosestBunker(latitudine, longitude);
+        return Ok(bunker);
     }
 }

@@ -8,8 +8,8 @@ public class Bunker{
     public string Region {get; set;}
     public string Province {get; set;}
     public string City {get; set;}
-    public int Latitudine {get; set;}
-    public int Longitude {get; set;}
+    public double Latitudine {get; set;}
+    public double Longitude {get; set;}
     public DateTime CreatedDateTime {get; set;}
     public DateTime LastModifiedDateTime {get; set;}
 }

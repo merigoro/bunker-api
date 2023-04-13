@@ -12,15 +12,15 @@ public class BunkerRepository : IBunkerRepository
     {
         Bunker bunker = new Bunker
         {
-            Id = new(),
+            Id = id,
             Name = "Bunker Prova",
             Description = "Des",
             Country = "Ita",
             Region = "Lombardia",
             Province = "Brescia",
             City = "Ghedi",
-            Latitudine = 1,
-            Longitude = 1,
+            Latitudine = 454060,
+            Longitude = 102755,
             CreatedDateTime = new DateTime(),
             LastModifiedDateTime = new DateTime()
         };
@@ -28,7 +28,53 @@ public class BunkerRepository : IBunkerRepository
     }
     public Task<List<Bunker>> GetBunkers()
     {
-        throw new NotImplementedException();
+        List<Bunker> bunkers = new List<Bunker>();
+        Bunker bunker = new Bunker
+        {
+            Id = new(),
+            Name = "Bunker Brescia",
+            Description = "Des",
+            Country = "Ita",
+            Region = "Lombardia",
+            Province = "Brescia",
+            City = "Brescia",
+            Latitudine = 45.5416,
+            Longitude = 10.2118,
+            CreatedDateTime = new DateTime(),
+            LastModifiedDateTime = new DateTime()
+        };
+        Bunker bunker2 = new Bunker
+        {
+            Id = new(),
+            Name = "Bunker Dublino",
+            Description = "Des",
+            Country = "Ire",
+            Region = "Irlanda",
+            Province = "Dublino",
+            City = "Dublino",
+            Latitudine = 53.3498,
+            Longitude = 6.2603,
+            CreatedDateTime = new DateTime(),
+            LastModifiedDateTime = new DateTime()
+        };
+        Bunker bunker3 = new Bunker
+        {
+            Id = new(),
+            Name = "Bunker Manerbio",
+            Description = "Des",
+            Country = "Ita",
+            Region = "Italy",
+            Province = "Manerbio",
+            City = "Manerbio",
+            Latitudine = 45.3534,
+            Longitude = 10.1408,
+            CreatedDateTime = new DateTime(),
+            LastModifiedDateTime = new DateTime()
+        };
+        bunkers.Add(bunker);
+        bunkers.Add(bunker2);
+        bunkers.Add(bunker3);
+        return Task.FromResult(bunkers);
     }
     public Task<Bunker> UpdateBunker(Guid id)
     {
