@@ -19,8 +19,8 @@ public class BunkerRepository : IBunkerRepository
             Region = "Lombardia",
             Province = "Brescia",
             City = "Ghedi",
-            Latitune = 454060,
-            Longitude = 102755,
+            Latitude = 45.4060,
+            Longitude = 10.2755,
             CreatedDateTime = new DateTime(),
             LastModifiedDateTime = new DateTime()
         };
@@ -38,7 +38,7 @@ public class BunkerRepository : IBunkerRepository
             Region = "Lombardia",
             Province = "Brescia",
             City = "Brescia",
-            Latitune = 45.5416,
+            Latitude = 45.5416,
             Longitude = 10.2118,
             CreatedDateTime = new DateTime(),
             LastModifiedDateTime = new DateTime()
@@ -52,8 +52,8 @@ public class BunkerRepository : IBunkerRepository
             Region = "Irlanda",
             Province = "Dublino",
             City = "Dublino",
-            Latitune = 53.3498,
-            Longitude = 6.2603,
+            Latitude = 53.3498,
+            Longitude = -6.2603,
             CreatedDateTime = new DateTime(),
             LastModifiedDateTime = new DateTime()
         };
@@ -66,7 +66,7 @@ public class BunkerRepository : IBunkerRepository
             Region = "Italy",
             Province = "Manerbio",
             City = "Manerbio",
-            Latitune = 45.3534,
+            Latitude = 45.3534,
             Longitude = 10.1408,
             CreatedDateTime = new DateTime(),
             LastModifiedDateTime = new DateTime()

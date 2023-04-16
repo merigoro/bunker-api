@@ -23,14 +23,14 @@ public class BunkerService : IBunkerService
     {
          return await _bunkerRepository.GetBunkers();
     }
-    public async Task<Bunker> GetClosestBunker(double latitudine, double longitude)
+    public async Task<Bunker> GetClosestBunker(double latitude, double longitude)
     {
         List<Bunker> bunkers = await _bunkerRepository.GetBunkers();
 
         //I don't use Math.Pow because is slower
         Bunker closest = bunkers.OrderBy(b =>
         (longitude - b.Longitude) * (longitude - b.Longitude)
-        + (latitudine - b.Latitune) * (latitudine - b.Latitune))
+        + (latitude - b.Latitude) * (latitude - b.Latitude))
                      .First();
 
         return closest;

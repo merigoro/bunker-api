@@ -9,7 +9,7 @@ public record BunkerResponse
     string Region,
     string Province,
     string City,
-    int Latitudine,
+    int Latitude,
     int Longitude,
     DateTime CreatedDateTime,
     DateTime LastModifiedDateTime 
