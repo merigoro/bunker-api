@@ -50,9 +50,9 @@ public class BunkerController : ControllerBase
         return Ok();
     }
     [HttpGet("closest/{latitudine}/{longitude}")]
-    public async Task<IActionResult> GetClosestBunker([FromRoute] double latitudine, [FromRoute] double longitude)
+    public async Task<IActionResult> GetClosestBunker([FromRoute] double latitude, [FromRoute] double longitude)
     {
-        Bunker bunker = await _bunkerService.GetClosestBunker(latitudine, longitude);
+        Bunker bunker = await _bunkerService.GetClosestBunker(latitude, longitude);
         return Ok(bunker);
     }
 }

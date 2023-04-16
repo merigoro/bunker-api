@@ -30,7 +30,7 @@ public class BunkerService : IBunkerService
         //I don't use Math.Pow because is slower
         Bunker closest = bunkers.OrderBy(b =>
         (longitude - b.Longitude) * (longitude - b.Longitude)
-        + (latitudine - b.Latitudine) * (latitudine - b.Latitudine))
+        + (latitudine - b.Latitune) * (latitudine - b.Latitune))
                      .First();
 
         return closest;
