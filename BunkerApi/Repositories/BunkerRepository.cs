@@ -2,14 +2,15 @@ using BunkerApi.Context;
 using BunkerApi.Models;
 using Dapper;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace BunkerApi.Repositories;
 public class BunkerRepository : IBunkerRepository
 {
-    private readonly DBContext _context;
-    public BunkerRepository(DBContext context) 
+    private readonly IDbConnection _connection;
+    public BunkerRepository(IDbConnection connection) 
     { 
-        _context = context;
+        _connection = connection;
     }
     public Task<Bunker> CreateBunker(Guid id)
     {
@@ -36,7 +37,7 @@ public class BunkerRepository : IBunkerRepository
     public async Task<List<Bunker>> GetBunkers()
     {
         string query = "Select * from Bunkers ";
-        var result = await _context.Connection().QueryAsync<Bunker>(query);
+        var result = await _connection.QueryAsync<Bunker>(query);
 
 
         //List<Bunker> bunkers = new List<Bunker>();

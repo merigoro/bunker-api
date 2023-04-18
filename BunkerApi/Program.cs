@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using BunkerApi;
 using MySql.Data.MySqlClient;
 using BunkerApi.Context;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,10 @@ builder.Services.AddApiVersioning(opt =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<DBContext>();
+IConfiguration _configuration;
+string connectionString = builder.Configuration.GetConnectionString("Default");
+
+builder.Services.AddTransient<IDbConnection>(_ => new MySqlConnection(connectionString));
 
 builder.Services.AddScoped<IBunkerService, BunkerService>();
 builder.Services.AddScoped<IBunkerRepository, BunkerRepository>();
