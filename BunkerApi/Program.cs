@@ -3,6 +3,8 @@ using BunkerApi.Repositories;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using BunkerApi;
+using MySql.Data.MySqlClient;
+using BunkerApi.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,9 @@ builder.Services.AddApiVersioning(opt =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<DBContext>();
+
 builder.Services.AddScoped<IBunkerService, BunkerService>();
 builder.Services.AddScoped<IBunkerRepository, BunkerRepository>();
 
