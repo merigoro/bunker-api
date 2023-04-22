@@ -1,4 +1,3 @@
-using BunkerApi.Context;
 using BunkerApi.Models;
 using Dapper;
 using MySql.Data.MySqlClient;

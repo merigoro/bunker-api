@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using BunkerApi;
 using MySql.Data.MySqlClient;
-using BunkerApi.Context;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
