@@ -64,6 +64,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseExceptionHandler("/error");
 app.UseHttpsRedirection();
 
 app.UseCors("corsapp");
