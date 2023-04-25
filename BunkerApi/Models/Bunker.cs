@@ -10,7 +10,7 @@ public class Bunker{
     public string City {get; set;}
     public double Latitude {get; set;}
     public double Longitude {get; set;}
-    public DateTime CreatedDateTime {get; set;}
-    public DateTime LastModifiedDateTime {get; set;}
+    public DateTimeOffset CreatedDateTime {get; set;}
+    public DateTimeOffset LastModifiedDateTime {get; set;}
 }
 

@@ -3,8 +3,8 @@ using BunkerApi.Repositories;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using BunkerApi;
-using MySql.Data.MySqlClient;
 using System.Data;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +25,7 @@ builder.Services.AddControllers();
 IConfiguration _configuration;
 string connectionString = builder.Configuration.GetConnectionString("Default");
 
-builder.Services.AddTransient<IDbConnection>(_ => new MySqlConnection(connectionString));
+builder.Services.AddTransient<IDbConnection>(_ => new NpgsqlConnection(connectionString));
 
 builder.Services.AddScoped<IBunkerService, BunkerService>();
 builder.Services.AddScoped<IBunkerRepository, BunkerRepository>();

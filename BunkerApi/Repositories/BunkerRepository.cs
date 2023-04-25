@@ -1,6 +1,5 @@
 using BunkerApi.Models;
 using Dapper;
-using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace BunkerApi.Repositories;
@@ -15,36 +14,35 @@ public class BunkerRepository : IBunkerRepository
     {
         throw new NotImplementedException();
     }
-    public Task<Bunker> GetBunker(Guid id)
+    public async Task<Bunker> GetBunker(Guid id)
     {
-        Bunker bunker = new Bunker
+        try
         {
-            Id = id,
-            Name = "Bunker Prova",
-            Description = "Des",
-            Country = "Ita",
-            Region = "Lombardia",
-            Province = "Brescia",
-            City = "Ghedi",
-            Latitude = 45.4060,
-            Longitude = 10.2755,
-            CreatedDateTime = new DateTime(),
-            LastModifiedDateTime = new DateTime()
-        };
-        return Task.FromResult(bunker);
+            string query = "Select * from bunkers Where id = @id ";
+
+            var result = await _connection.QuerySingleOrDefault(query, new
+            {
+                id = id
+            }) ;
+            return result;
+        }
+        catch
+        {
+            throw new Exception("Error to connect to database");
+        }
     }
     public async Task<List<Bunker>> GetBunkers()
     {
         try
         {
-            string query = "Select * from Bunkers ";
+            string query = "Select * from bunkers ";
 
             var result = await _connection.QueryAsync<Bunker>(query);
             return result.ToList();
         }
-        catch
+        catch(Exception e)
         {
-            throw new Exception("Error to connect to database");
+            throw new Exception(e.Message);
         }
     }
     public Task<Bunker> UpdateBunker(Guid id)
