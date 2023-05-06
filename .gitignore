@@ -486,3 +486,4 @@ $RECYCLE.BIN/
 /BunkerApi/obj/Debug/net7.0/BunkerApi.assets.cache
 /BunkerApi/obj/BunkerApi.csproj.nuget.dgspec.json
 /BunkerApi/obj/project.assets.json
+/BunkerApi/appsettings.json
