@@ -9,8 +9,9 @@ public record BunkerResponse
     string Region,
     string Province,
     string City,
-    int Latitude,
-    int Longitude,
+    double Latitude,
+    double Longitude,
+    string Image,
     DateTime CreatedDateTime,
     DateTime LastModifiedDateTime 
 );

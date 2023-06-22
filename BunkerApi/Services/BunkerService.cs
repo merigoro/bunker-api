@@ -11,9 +11,9 @@ public class BunkerService : IBunkerService
     {
         _bunkerRepository = bunkerRepository;
     }
-    public async Task<Bunker> CreateBunker(Guid id)
+    public async Task<Bunker> CreateBunker(Bunker bunker)
     {
-        return await _bunkerRepository.CreateBunker(id);
+        return await _bunkerRepository.CreateBunker(bunker);
     }
     public async Task<Bunker> GetBunker(Guid id)
     {
@@ -35,9 +35,9 @@ public class BunkerService : IBunkerService
 
         return closest;
     }
-    public async Task<Bunker> UpdateBunker(Guid id)
+    public async Task<Bunker> UpdateBunker(Guid id, Bunker bunker)
     {
-        return await _bunkerRepository.UpdateBunker(id);
+        return await _bunkerRepository.UpdateBunker(id, bunker);
     }
     public async Task<Bunker> DeleteBunker(Guid id)
     {
