@@ -71,9 +71,35 @@ public class BunkerRepository : IBunkerRepository
             throw new Exception(e.Message);
         }
     }
-    public Task<Bunker> UpdateBunker(Guid id, Bunker bunker)
+    public async Task<Bunker> UpdateBunker(Guid id, Bunker bunker)
     {
-        throw new NotImplementedException();
+        try
+        {
+            string query = "Update bunkers set name = @name, description = @description" +
+                ", country = @country, region = @region, province = @province, city = @city" +
+                ", latitude = @latitude, longitude = @longitude, image = @image " +
+                " where id = @id ";
+            //"Returning id, name, description, country, region, province, city, latitude, longitude, image";
+
+            await _connection.ExecuteAsync(query, new
+            {
+                id = id,
+                name = bunker.Name,
+                description = bunker.Description,
+                country = bunker.Country,
+                region = bunker.Region,
+                province = bunker.Province,
+                city = bunker.City,
+                latitude = bunker.Latitude,
+                longitude = bunker.Longitude,
+                image = bunker.Image
+            });
+            return await GetBunker(id);
+        }
+        catch
+        {
+            throw new Exception("Error to connect to database");
+        }
     }
     public Task<Bunker> DeleteBunker(Guid id)
     {
