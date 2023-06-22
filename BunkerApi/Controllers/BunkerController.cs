@@ -20,9 +20,25 @@ public class BunkerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateBunker(Guid id)
+    public async Task<IActionResult> CreateBunker(BunkerCreate bunkerCreate)
     {
-        Bunker bunker = await _bunkerService.CreateBunker(id);
+
+        if (bunkerCreate is null)
+        {
+            return BadRequest();
+        }
+        Bunker bunker = new();
+        bunker.Name = bunkerCreate.Name;
+        bunker.Description = bunkerCreate.Description;
+        bunker.Country = bunkerCreate.Country;
+        bunker.Region = bunkerCreate.Region;
+        bunker.City = bunkerCreate.City;
+        bunker.Province = bunkerCreate.Province;
+        bunker.Latitude = bunkerCreate.Latitude;
+        bunker.Longitude = bunkerCreate.Longitude;
+        bunker.Image = bunkerCreate.Image;
+
+        bunker = await _bunkerService.CreateBunker(bunker);
         return Ok(bunker);
     }
     [HttpGet("{id}")]
@@ -38,9 +54,24 @@ public class BunkerController : ControllerBase
         return Ok(bunkers);
     }
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> UpdateBunker([FromRoute] Guid id)
+    public async Task<IActionResult> UpdateBunker([FromRoute] Guid id, [FromBody] BunkerUpdate bunkerCreate)
     {
-        Bunker bunker = await _bunkerService.UpdateBunker(id);
+        if (bunkerCreate is null)
+        {
+            return BadRequest();
+        }
+        Bunker bunker = new();
+        bunker.Name = bunkerCreate.Name;
+        bunker.Description = bunkerCreate.Description;
+        bunker.Country = bunkerCreate.Country;
+        bunker.Region = bunkerCreate.Region;
+        bunker.City = bunkerCreate.City;
+        bunker.Province = bunkerCreate.Province;
+        bunker.Latitude = bunkerCreate.Latitude;
+        bunker.Longitude = bunkerCreate.Longitude;
+        bunker.Image = bunkerCreate.Image;
+
+        bunker = await _bunkerService.UpdateBunker(id, bunker);
         return Ok(bunker);
     }
     [HttpDelete("{id:guid}")]

@@ -1,6 +1,8 @@
 using BunkerApi.Models;
 using Dapper;
 using System.Data;
+using System.Diagnostics.Metrics;
+using System.Xml.Linq;
 
 namespace BunkerApi.Repositories;
 public class BunkerRepository : IBunkerRepository
@@ -10,9 +12,33 @@ public class BunkerRepository : IBunkerRepository
     { 
         _connection = connection;
     }
-    public Task<Bunker> CreateBunker(Guid id)
+    public async Task<Bunker> CreateBunker(Bunker bunker)
     {
-        throw new NotImplementedException();
+        try
+        {
+            string query = "Insert into bunkers (name, description, country, region" +
+                ", province, city, latitude, longitude, image)" +
+                " values (@name, @description, @country, @region, @province, @city, @latitude, @longitude, @image)";
+                //"Returning id, name, description, country, region, province, city, latitude, longitude, image";
+
+            await _connection.ExecuteAsync(query, new
+            {
+                name = bunker.Name,
+                description = bunker.Description,
+                country = bunker.Country,
+                region = bunker.Region,
+                province = bunker.Province,
+                city = bunker.City, 
+                latitude = bunker.Latitude,
+                longitude = bunker.Longitude, 
+                image = bunker.Image
+            });
+            return bunker;
+        }
+        catch
+        {
+            throw new Exception("Error to connect to database");
+        }
     }
     public async Task<Bunker> GetBunker(Guid id)
     {
@@ -45,7 +71,7 @@ public class BunkerRepository : IBunkerRepository
             throw new Exception(e.Message);
         }
     }
-    public Task<Bunker> UpdateBunker(Guid id)
+    public Task<Bunker> UpdateBunker(Guid id, Bunker bunker)
     {
         throw new NotImplementedException();
     }
