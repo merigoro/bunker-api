@@ -98,8 +98,25 @@ public class BunkerRepository : IBunkerRepository
             throw new Exception("Error to connect to database");
         }
     }
-    public Task<Bunker> DeleteBunker(Guid id)
+    public async Task<Bunker> DeleteBunker(Guid id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            Bunker bunker = new();
+            bunker = await GetBunker(id);
+                
+            string query = "Delete from bunkers where id = @id";
+
+            await _connection.ExecuteAsync(query, new
+            {
+                id = id
+            });
+
+            return bunker;
+        }
+        catch
+        {
+            throw new Exception("Error to connect to database");
+        }
     }
 }
