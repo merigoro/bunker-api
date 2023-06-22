@@ -1,8 +1,7 @@
 using BunkerApi.Models;
 using Dapper;
+using MySql.Data.MySqlClient;
 using System.Data;
-using System.Diagnostics.Metrics;
-using System.Xml.Linq;
 
 namespace BunkerApi.Repositories;
 public class BunkerRepository : IBunkerRepository
@@ -19,8 +18,9 @@ public class BunkerRepository : IBunkerRepository
             string query = "Insert into bunkers (name, description, country, region" +
                 ", province, city, latitude, longitude, image)" +
                 " values (@name, @description, @country, @region, @province, @city, @latitude, @longitude, @image)";
-                //"Returning id, name, description, country, region, province, city, latitude, longitude, image";
-
+            //"Returning id, name, description, country, region, province, city, latitude, longitude, image";
+            _connection.Open();
+            
             await _connection.ExecuteAsync(query, new
             {
                 name = bunker.Name,
@@ -46,7 +46,7 @@ public class BunkerRepository : IBunkerRepository
         {
             string query = "Select * from bunkers Where id = @id ";
 
-            var result = await _connection.QuerySingleOrDefault(query, new
+            var result = await _connection.QuerySingleOrDefaultAsync<Bunker>(query, new
             {
                 id = id
             }) ;

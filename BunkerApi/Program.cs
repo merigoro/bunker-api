@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using BunkerApi;
 using System.Data;
 using Npgsql;
+using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,6 @@ IConfiguration _configuration;
 string connectionString = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddTransient<IDbConnection>(_ => new NpgsqlConnection(connectionString));
-
 builder.Services.AddScoped<IBunkerService, BunkerService>();
 builder.Services.AddScoped<IBunkerRepository, BunkerRepository>();
 
