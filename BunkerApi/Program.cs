@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using BunkerApi;
 using System.Data;
 using Npgsql;
-using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

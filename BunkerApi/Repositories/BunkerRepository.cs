@@ -1,6 +1,5 @@
 using BunkerApi.Models;
 using Dapper;
-using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace BunkerApi.Repositories;
@@ -19,7 +18,6 @@ public class BunkerRepository : IBunkerRepository
                 ", province, city, latitude, longitude, image)" +
                 " values (@name, @description, @country, @region, @province, @city, @latitude, @longitude, @image)";
             //"Returning id, name, description, country, region, province, city, latitude, longitude, image";
-            _connection.Open();
             
             await _connection.ExecuteAsync(query, new
             {
@@ -83,7 +81,6 @@ public class BunkerRepository : IBunkerRepository
 
             await _connection.ExecuteAsync(query, new
             {
-                id = id,
                 name = bunker.Name,
                 description = bunker.Description,
                 country = bunker.Country,
