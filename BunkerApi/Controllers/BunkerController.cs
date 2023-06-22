@@ -47,7 +47,7 @@ public class BunkerController : ControllerBase
     public async Task<IActionResult> DeleteBunker([FromRoute] Guid id)
     {
         Bunker bunker = await _bunkerService.DeleteBunker(id);
-        return Ok();
+        return Ok(bunker);
     }
     [HttpGet("closest/{latitude}/{longitude}")]
     public async Task<IActionResult> GetClosestBunker([FromRoute] double latitude, [FromRoute] double longitude)
