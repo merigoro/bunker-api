@@ -16,10 +16,10 @@ public class BunkerRepository : IBunkerRepository
         {
             string query = "Insert into bunkers (name, description, country, region" +
                 ", province, city, latitude, longitude, image)" +
-                " values (@name, @description, @country, @region, @province, @city, @latitude, @longitude, @image)";
-            //"Returning id, name, description, country, region, province, city, latitude, longitude, image";
+                " values (@name, @description, @country, @region, @province, @city, @latitude, @longitude, @image) " +
+                "Returning *";
             
-            await _connection.ExecuteAsync(query, new
+            var result = await _connection.QuerySingleOrDefaultAsync<Bunker>(query, new
             {
                 name = bunker.Name,
                 description = bunker.Description,
@@ -31,7 +31,7 @@ public class BunkerRepository : IBunkerRepository
                 longitude = bunker.Longitude, 
                 image = bunker.Image
             });
-            return bunker;
+            return result;
         }
         catch
         {
@@ -76,11 +76,12 @@ public class BunkerRepository : IBunkerRepository
             string query = "Update bunkers set name = @name, description = @description" +
                 ", country = @country, region = @region, province = @province, city = @city" +
                 ", latitude = @latitude, longitude = @longitude, image = @image " +
-                " where id = @id ";
-            //"Returning id, name, description, country, region, province, city, latitude, longitude, image";
+                " where id = @id " +
+                "Returning *";
 
-            await _connection.ExecuteAsync(query, new
+            var result = await _connection.QuerySingleOrDefaultAsync<Bunker>(query, new
             {
+                id = id,
                 name = bunker.Name,
                 description = bunker.Description,
                 country = bunker.Country,
@@ -91,7 +92,7 @@ public class BunkerRepository : IBunkerRepository
                 longitude = bunker.Longitude,
                 image = bunker.Image
             });
-            return await GetBunker(id);
+            return result;
         }
         catch
         {
