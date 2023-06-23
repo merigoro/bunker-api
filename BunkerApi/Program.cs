@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using BunkerApi;
 using System.Data;
 using Npgsql;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,12 +22,16 @@ builder.Services.AddApiVersioning(opt =>
                                                     new MediaTypeApiVersionReader("x-api-version"));
 });
 
+//Add JWT Schema settings
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-IConfiguration _configuration;
-string connectionString = builder.Configuration.GetConnectionString("Default");
+string? connectionString = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddTransient<IDbConnection>(_ => new NpgsqlConnection(connectionString));
 builder.Services.AddScoped<IBunkerService, BunkerService>();
@@ -68,6 +76,7 @@ app.UseHttpsRedirection();
 
 app.UseCors("corsapp");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

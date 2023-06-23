@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using BunkerApi.Services;
 using BunkerApi.Models;
 using BunkerApi.Mappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BunkerApi.Controllers;
 
@@ -19,7 +20,7 @@ public class BunkerController : ControllerBase
         _logger = logger;
         _bunkerService = bunkerService;
     }
-
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateBunker(BunkerCreate bunkerCreate)
     {
@@ -45,6 +46,7 @@ public class BunkerController : ControllerBase
         List<Bunker> bunkers = await _bunkerService.GetBunkers();
         return Ok(bunkers);
     }
+    [Authorize]
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateBunker([FromRoute] Guid id, [FromBody] BunkerUpdate bunkerUpdate)
     {
@@ -57,6 +59,8 @@ public class BunkerController : ControllerBase
         bunker = await _bunkerService.UpdateBunker(id, bunker);
         return Ok(bunker.AsResponse());
     }
+
+    [Authorize]
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteBunker([FromRoute] Guid id)
     {

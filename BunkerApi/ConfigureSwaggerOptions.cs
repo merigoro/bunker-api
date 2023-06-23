@@ -36,10 +36,7 @@ public class ConfigureSwaggerOptions
     /// </summary>
     /// <param name="name"></param>
     /// <param name="options"></param>
-    public void Configure(string name, SwaggerGenOptions options)
-    {
-        Configure(options);
-    }
+    public void Configure(string name, SwaggerGenOptions options) => Configure(options);
 
     /// <summary>
     /// Create information about the version of the API
