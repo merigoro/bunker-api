@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,10 @@ builder.Services.AddVersionedApiExplorer(setup =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<SwaggerGeneratorOptions>(options =>
+{
+    options.InferSecuritySchemes = true;
+});
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>

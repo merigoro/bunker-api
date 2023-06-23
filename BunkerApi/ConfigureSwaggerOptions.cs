@@ -29,6 +29,19 @@ public class ConfigureSwaggerOptions
                 description.GroupName,
                 CreateVersionInfo(description));
         }
+        options.InferSecuritySchemes();
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                    }
+                },new string[]{}
+            }
+        });
     }
 
     /// <summary>
