@@ -12,6 +12,6 @@ public record BunkerResponse
     double Latitude,
     double Longitude,
     string Image,
-    DateTime CreatedDateTime,
-    DateTime LastModifiedDateTime 
+    DateTimeOffset CreatedDateTime,
+    DateTimeOffset LastModifiedDateTime 
 );

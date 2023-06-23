@@ -2,6 +2,7 @@ using BunkerContracts;
 using Microsoft.AspNetCore.Mvc;
 using BunkerApi.Services;
 using BunkerApi.Models;
+using BunkerApi.Mappers;
 
 namespace BunkerApi.Controllers;
 
@@ -27,19 +28,10 @@ public class BunkerController : ControllerBase
         {
             return BadRequest();
         }
-        Bunker bunker = new();
-        bunker.Name = bunkerCreate.Name;
-        bunker.Description = bunkerCreate.Description;
-        bunker.Country = bunkerCreate.Country;
-        bunker.Region = bunkerCreate.Region;
-        bunker.City = bunkerCreate.City;
-        bunker.Province = bunkerCreate.Province;
-        bunker.Latitude = bunkerCreate.Latitude;
-        bunker.Longitude = bunkerCreate.Longitude;
-        bunker.Image = bunkerCreate.Image;
+        Bunker bunker = bunkerCreate.AsModel();
 
         bunker = await _bunkerService.CreateBunker(bunker);
-        return Ok(bunker);
+        return Ok(bunker.AsResponse());
     }
     [HttpGet("{id}")]
     public async Task<IActionResult> GetBunker([FromRoute] Guid id)
@@ -54,25 +46,16 @@ public class BunkerController : ControllerBase
         return Ok(bunkers);
     }
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> UpdateBunker([FromRoute] Guid id, [FromBody] BunkerUpdate bunkerCreate)
+    public async Task<IActionResult> UpdateBunker([FromRoute] Guid id, [FromBody] BunkerUpdate bunkerUpdate)
     {
-        if (bunkerCreate is null)
+        if (bunkerUpdate is null)
         {
             return BadRequest();
         }
-        Bunker bunker = new();
-        bunker.Name = bunkerCreate.Name;
-        bunker.Description = bunkerCreate.Description;
-        bunker.Country = bunkerCreate.Country;
-        bunker.Region = bunkerCreate.Region;
-        bunker.City = bunkerCreate.City;
-        bunker.Province = bunkerCreate.Province;
-        bunker.Latitude = bunkerCreate.Latitude;
-        bunker.Longitude = bunkerCreate.Longitude;
-        bunker.Image = bunkerCreate.Image;
+        Bunker bunker = bunkerUpdate.AsModel();
 
         bunker = await _bunkerService.UpdateBunker(id, bunker);
-        return Ok(bunker);
+        return Ok(bunker.AsResponse());
     }
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteBunker([FromRoute] Guid id)
