@@ -1,6 +1,5 @@
 using BunkerApi.Models;
 using BunkerApi.Repositories;
-using System.Drawing;
 
 namespace BunkerApi.Services;
 
