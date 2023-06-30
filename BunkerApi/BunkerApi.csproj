@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BunkerContracts\BunkerContracts.csproj" />
+    <ProjectReference Include="..\BunkerApi.Contracts\BunkerApi.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

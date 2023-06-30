@@ -16,11 +16,11 @@ public class BunkerService : IBunkerService
     }
     public async Task<Bunker> GetBunker(Guid id)
     {
-         return await _bunkerRepository.GetBunker(id);
+        return await _bunkerRepository.GetBunker(id);
     }
     public async Task<List<Bunker>> GetBunkers()
     {
-         return await _bunkerRepository.GetBunkers();
+        return await _bunkerRepository.GetBunkers();
     }
     public async Task<Bunker> GetClosestBunker(double latitude, double longitude)
     {
